@@ -21,7 +21,16 @@ TODO: List what your package can do. Maybe include images, gifs, or videos.
 ## Getting started
 
 1. Create a file on yor web folder called "paystack_interop.js"
-2. Copy and paste the code below on the created folder
+2. In your web/index.html file add the following code at the top of the body tag section
+```dart
+<body>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="paystack_interop.js"></script>
+...
+...
+</body>
+```
+3. Copy and paste the code below on the created folder
 ```dart
 function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
   let handler = PaystackPop.setup({
@@ -50,17 +59,17 @@ TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder.
 
 ```dart
- PaystackPopup.openPaystackPopup(
-    publicKey:'Your public key'
-    email: 'youremail@gmail.com',
-    amount: (amount * 100).toString(),
-    ref: ref,
-    onClosed: () {
-    debugPrint('Could\'nt finish payment');
-    },
-    onSuccess: () {
-    debugPrint('successful payment');
-    },
+     FlutterPaystackPlus.openPaystackPopup(
+      publicKey: '-Your-public-key-',
+      email: 'youremail@gmail.com',
+      amount: (amount * 100).toString(),
+      ref: DateTime.now().millisecondsSinceEpoch.toString(),
+      onClosed: () {
+        debugPrint('Could\'nt finish payment');
+      },
+      onSuccess: () async {
+        debugPrint('successful payment');
+      },
     );
 ```
 
