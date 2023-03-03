@@ -11,12 +11,23 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Flutter plugin for making payments via Paystack Payment Gateway. Fully supports Android, iOS and Web.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Mobile Money
+
+- VISA
+
+- Bank
+
+- Bank Transfer
+
+- USSD
+
+- QR
+
+- EFT
 
 ## Getting started
 
@@ -74,7 +85,4 @@ to `/example` folder.
 ```
 
 ## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+Here is a detailed example project => https://github.com/Princewil/flutter_paystack_plus_example 
