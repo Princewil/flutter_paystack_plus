@@ -20,17 +20,9 @@ TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
 
-1. Create a file on yor web folder called "paystack_interop.js"
-2. In your web/index.html file add the following code at the top of the body tag section
-```dart
-<body>
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script src="paystack_interop.js"></script>
-...
-...
-</body>
-```
-3. Copy and paste the code below on the created folder
+1. Create a file on your web folder and call it "paystack_interop.js"
+
+2. Copy and paste the code below on the created folder
 ```dart
 function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
   let handler = PaystackPop.setup({
@@ -51,7 +43,15 @@ function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
   return handler.openIframe();
 }
 ```
-
+3. In your web/index.html file add the following code at the top of the body tag section
+```dart
+<body>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="paystack_interop.js"></script>
+...
+...
+</body>
+```
 
 ## Usage
 
