@@ -68,9 +68,6 @@ function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
      FlutterPaystackPlus.openPaystackPopup(
       publicKey: '-Your-public-key-',
