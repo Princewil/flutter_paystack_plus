@@ -31,6 +31,8 @@ A Flutter plugin for making payments via Paystack Payment Gateway. Fully support
 
 ## Getting started
 
+Before getting started, ensure you have succesfully created an account on paystack and you have your public key ready. Vist https://paystack.com to setup your account.
+
 1. Create a file on your web folder and call it "paystack_interop.js"
 
 2. Copy and paste the code below on the created folder
@@ -86,3 +88,6 @@ to `/example` folder.
 
 ## Additional information
 Here is a detailed example project => https://github.com/Princewil/flutter_paystack_plus_example 
+
+Please feel very free to contribute. Experienced an issue or want to report a bug? Please, feel free to report it. Remember to be as descriptive as possible. 
+Thank you.
