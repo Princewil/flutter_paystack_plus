@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-A Flutter plugin for making payments via Paystack Payment Gateway. Fully supports Android, iOS and Web.
+A Flutter plugin for making payments via Paystack Payment Gateway - For web only.
 
 ## Features
 
