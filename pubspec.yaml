@@ -1,6 +1,6 @@
 name: flutter_paystack_plus
 description: Implement payment using Paystack.
-version: 0.0.1+1
+version: 0.0.2
 homepage: https://github.com/Princewil/flutter_paystack_plus
 
 environment:
@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   js: ^0.6.4
+  pay_with_paystack: ^1.0.2
 
 dev_dependencies:
   flutter_test:

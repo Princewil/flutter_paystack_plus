@@ -1,3 +1,8 @@
 ## 0.0.1
+Deployed first version - for web only
 
-Make payment using paystack. Compatible with Andriod, iOS and Web.
+## 0.0.1+1
+Updated readme
+
+## 0.0.2
+Enabled compatibility for android and iOS

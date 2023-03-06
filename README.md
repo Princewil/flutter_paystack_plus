@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-A Flutter plugin for making payments via Paystack Payment Gateway - For web only.
+A Flutter plugin for making payments via Paystack Payment Gateway - Compatible on Android, iOS and Web.
 
 ## Features
 
@@ -27,11 +27,11 @@ A Flutter plugin for making payments via Paystack Payment Gateway - For web only
 
 - QR
 
-- EFT
-
 ## Getting started
 
 Before getting started, ensure you have succesfully created an account on paystack and you have your public key ready. Vist https://paystack.com to setup your account.
+
+A. FOR WEB COMPATIBILITY: Ensure you do the following
 
 1. Create a file on your web folder and call it "paystack_interop.js"
 
@@ -66,14 +66,27 @@ function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
 </body>
 ```
 
+B. NO SETUP IS REQUIRED FOR ANDROID AND iOS
+
+## Some important parameters
+
+- [publicKey] is required for web only
+- [secretKey] is required for android and iOS only
+- [context] is required for android and iOS only
+- [amount] should be multiplied by 100 [eg amount * 100]
+- [onClose] is called when the user cancels a transaction or when there is a failed transaction
+- [onSuccess] is called on successful transactions
+
 ## Usage
 
 ```dart
      FlutterPaystackPlus.openPaystackPopup(
       publicKey: '-Your-public-key-',
-      email: 'youremail@gmail.com',
+      customerEmail: 'youremail@gmail.com',
+      context:context,
+      secretKey:'-Your-secret-key-',
       amount: (amount * 100).toString(),
-      ref: DateTime.now().millisecondsSinceEpoch.toString(),
+      reference: DateTime.now().millisecondsSinceEpoch.toString(),
       onClosed: () {
         debugPrint('Could\'nt finish payment');
       },
