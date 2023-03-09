@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_paystack_plus/src/abstract_class.dart';
 import 'package:flutter_paystack_plus/src/for_non_web.dart';
 import 'package:flutter_paystack_plus/src/for_web.dart';
 
@@ -21,25 +22,33 @@ class FlutterPaystackPlus {
     required void Function() onClosed,
     required void Function() onSuccess,
   }) async {
-    if (kIsWeb) {
-      return await forWeb(
-        publicKey: publicKey!,
-        email: customerEmail,
+    final MakePlatformSpecificPayment makePlatformSpecificPayment =
+        MakePlatformSpecificPayment();
+    return await makePlatformSpecificPayment.makePayment(
+        customerEmail: customerEmail,
         amount: amount,
-        ref: reference,
+        reference: reference,
         onClosed: onClosed,
-        onSuccess: onSuccess,
-      );
-    } else {
-      return await forNonWeb(
-          customerEmail: customerEmail,
-          amount: amount,
-          reference: reference,
-          secretKey: secretKey!,
-          currency: currency ?? 'NGN',
-          context: context!,
-          onClosed: onClosed,
-          onSuccess: onSuccess);
-    }
+        onSuccess: onSuccess);
+    // if (kIsWeb) {
+    //   return await forWeb(
+    //     publicKey: publicKey!,
+    //     email: customerEmail,
+    //     amount: amount,
+    //     ref: reference,
+    //     onClosed: onClosed,
+    //     onSuccess: onSuccess,
+    //   );
+    // } else {
+    //   return await forNonWeb(
+    //       customerEmail: customerEmail,
+    //       amount: amount,
+    //       reference: reference,
+    //       secretKey: secretKey!,
+    //       currency: currency ?? 'NGN',
+    //       context: context!,
+    //       onClosed: onClosed,
+    //       onSuccess: onSuccess);
+    // }
   }
 }
