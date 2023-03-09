@@ -26,6 +26,10 @@ class FlutterPaystackPlus {
         MakePlatformSpecificPayment();
     return await makePlatformSpecificPayment.makePayment(
         customerEmail: customerEmail,
+        context: context,
+        currency: currency,
+        publicKey: publicKey,
+        secretKey: secretKey,
         amount: amount,
         reference: reference,
         onClosed: onClosed,
