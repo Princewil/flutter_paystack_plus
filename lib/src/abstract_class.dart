@@ -4,7 +4,7 @@ import 'package:flutter_paystack_plus/src/stub.dart'
 import 'package:flutter/material.dart';
 
 abstract class MakePlatformSpecificPayment {
-  Future makePayment({
+  makePayment({
     required String customerEmail,
     required String amount,
     required String reference,

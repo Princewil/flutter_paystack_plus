@@ -1,5 +1,5 @@
 name: flutter_paystack_plus
-description: Implement payment using Paystack.
+description: An improved implementation of payment using Paystack - Compatible with Web, Android and iOS.
 version: 0.0.2
 homepage: https://github.com/Princewil/flutter_paystack_plus
 

@@ -7,7 +7,7 @@ import 'paystack_interop.dart';
 
 class PayForWeb implements MakePlatformSpecificPayment {
   @override
-  Future makePayment({
+  makePayment({
     required String customerEmail,
     required String amount,
     required String reference,
@@ -18,7 +18,7 @@ class PayForWeb implements MakePlatformSpecificPayment {
     required void Function() onClosed,
     required void Function() onSuccess,
   }) async {
-    return js.context.callMethod(
+    js.context.callMethod(
       paystackPopUp(
         publicKey!,
         customerEmail,
