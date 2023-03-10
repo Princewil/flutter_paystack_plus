@@ -1,8 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack_plus/src/abstract_class.dart';
-import 'package:flutter_paystack_plus/src/for_non_web.dart';
-import 'package:flutter_paystack_plus/src/for_web.dart';
 
 /// [publicKey] is required for web only
 /// [secretKey] is required for android and iOS only
