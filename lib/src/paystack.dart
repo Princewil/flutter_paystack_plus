@@ -31,25 +31,5 @@ class FlutterPaystackPlus {
         reference: reference,
         onClosed: onClosed,
         onSuccess: onSuccess);
-    // if (kIsWeb) {
-    //   return await forWeb(
-    //     publicKey: publicKey!,
-    //     email: customerEmail,
-    //     amount: amount,
-    //     ref: reference,
-    //     onClosed: onClosed,
-    //     onSuccess: onSuccess,
-    //   );
-    // } else {
-    //   return await forNonWeb(
-    //       customerEmail: customerEmail,
-    //       amount: amount,
-    //       reference: reference,
-    //       secretKey: secretKey!,
-    //       currency: currency ?? 'NGN',
-    //       context: context!,
-    //       onClosed: onClosed,
-    //       onSuccess: onSuccess);
-    // }
   }
 }

@@ -66,7 +66,22 @@ function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
 </body>
 ```
 
-B. NO SETUP IS REQUIRED FOR ANDROID AND iOS
+
+B. FOR ANDROID COMPATIBILITY: Ensure your minSdkVersion is 19 or higher
+
+```dart
+defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId '...'
+        minSdkVersion 19 // Ensure this line is 19 or higher
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+```
+
+
+C. NO SETUP REQUIRED for iOS
 
 ## Some important parameters
 
