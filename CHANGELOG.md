@@ -9,3 +9,6 @@ Enabled compatibility for android and iOS
 
 ## 0.0.3
 Fixed bug for android and iOS
+
+## 0.0.3+1
+Updated readme
