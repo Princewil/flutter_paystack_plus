@@ -12,3 +12,7 @@ Fixed bug for android and iOS
 
 ## 0.0.3+1
 Updated readme
+
+## 0.0.4
+- Improved package
+- Cancel button works for mobile interface
