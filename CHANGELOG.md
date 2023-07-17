@@ -16,3 +16,7 @@ Updated readme
 ## 0.0.4
 - Improved package
 - Cancel button works for mobile interface
+
+## 1.0.0
+- Improved package
+- Package response to SafeArea widget
