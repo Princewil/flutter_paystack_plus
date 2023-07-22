@@ -20,3 +20,6 @@ Updated readme
 ## 1.0.0
 - Improved package
 - Package response to SafeArea widget
+
+## 1.0.1
+- Fixed analysis issue

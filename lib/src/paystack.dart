@@ -12,6 +12,11 @@ class FlutterPaystackPlus {
     /// Alpha numeric and/or number ID to a transaction
     required String reference,
 
+    /// URL to redirect to after payment is successful, this helps close the session.
+    /// This is setup in the Dashboard of paystack and the same URL setup is then provided here by you again.
+    /// [callBackUrl] is required for mobile only
+    String? callBackUrl,
+
     /// [publicKey] is required for web only
     String? publicKey,
 
@@ -42,6 +47,7 @@ class FlutterPaystackPlus {
       reference: reference,
       onClosed: onClosed,
       onSuccess: onSuccess,
+      callBackUrl: callBackUrl,
     );
   }
 }

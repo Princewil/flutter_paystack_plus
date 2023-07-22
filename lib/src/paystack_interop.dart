@@ -20,6 +20,7 @@ class PayForWeb implements MakePlatformSpecificPayment {
     required String customerEmail,
     required String amount,
     required String reference,
+    String? callBackUrl,
     String? publicKey,
     String? secretKey,
     String? currency,

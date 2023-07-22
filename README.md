@@ -86,11 +86,12 @@ C. NO SETUP REQUIRED for iOS
 ## Some important parameters
 
 - [publicKey] is required for web only
-- [secretKey] is required for android and iOS only
-- [context] is required for android and iOS only
+- [secretKey] is required for Mobile only
+- [context] is required for Mobile only
 - [amount] should be multiplied by 100 [eg amount * 100]
 - [onClose] is called when the user cancels a transaction or when there is a failed transaction
 - [onSuccess] is called on successful transactions
+- [callBackURL] is required for Mobile only. Users are redirected to this URL after payment is successful, this helps close the session. The URL is setup in your Dashboard and then provided here.
 
 ## Usage
 
