@@ -23,8 +23,8 @@ class PayForMobile implements MakePlatformSpecificPayment {
       reference: reference,
       currency: currency!,
       amount: amount,
-      transactionCompleted: onClosed,
-      transactionNotCompleted: onSuccess,
+      transactionCompleted: onSuccess,
+      transactionNotCompleted: onClosed,
     );
   }
 }
