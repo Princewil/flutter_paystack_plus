@@ -1,6 +1,6 @@
 name: flutter_paystack_plus
 description: An improved implementation of payment using Paystack - Compatible with Web, Android and iOS (Bank, Bank transfer, Card, USSD, Mobile money and others).
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/Princewil/flutter_paystack_plus
 
 environment:

@@ -21,5 +21,5 @@ Updated readme
 - Improved package
 - Package response to SafeArea widget
 
-## 1.0.1
-- Fixed analysis issue
+## 1.0.2
+- Fixed bug for mobile
