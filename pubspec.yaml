@@ -11,7 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   js: ^0.6.4
-  pay_with_paystack: ^1.0.6
+  pay_with_paystack:
+    git:
+      url: https://github.com/Princewil/pay_with_paystack_forked.git
 
 dev_dependencies:
   flutter_test:
