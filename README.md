@@ -113,7 +113,5 @@ C. NO SETUP REQUIRED for iOS
 ```
 
 ## Additional information
-Here is a detailed example project => https://github.com/Princewil/flutter_paystack_plus_example 
-
 Please feel very free to contribute. Experienced an issue or want to report a bug? Please, feel free to report it. Remember to be as descriptive as possible. 
 Thank you.
