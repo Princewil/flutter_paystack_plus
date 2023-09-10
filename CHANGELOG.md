@@ -23,3 +23,6 @@ Updated readme
 
 ## 1.0.2
 - Fixed bug for mobile
+## 1.1.0
+- Added Metadata as a parameter
+- Upgrade package
