@@ -30,8 +30,8 @@ class FlutterPaystackPlus {
     /// [context] is required for android and iOS only
     BuildContext? context,
 
-    ///For Developer purposes only
-    Object? metadata,
+    ///Extra data for developer purposes.
+    metadata,
 
     /// [onClosed] is called when the user cancels a transaction or when there is a failed transaction
     required void Function() onClosed,
