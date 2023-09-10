@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack_plus/src/abstract_class.dart';
 
@@ -29,6 +30,9 @@ class FlutterPaystackPlus {
     /// [context] is required for android and iOS only
     BuildContext? context,
 
+    ///For Developer purposes only
+    Object? metadata,
+
     /// [onClosed] is called when the user cancels a transaction or when there is a failed transaction
     required void Function() onClosed,
 
@@ -37,6 +41,26 @@ class FlutterPaystackPlus {
   }) async {
     final MakePlatformSpecificPayment makePlatformSpecificPayment =
         MakePlatformSpecificPayment();
+    if (kIsWeb) {
+      //because public key is needed for web
+      if (publicKey == null) {
+        throw Exception('Please provide your paystack public key');
+      } else if (publicKey.isEmpty) {
+        throw Exception('Please provide a valid paystack public key');
+      }
+    } else {
+      //meaning its running on mobile
+      if (context == null) {
+        //because context is needed for mobile
+        throw Exception('Pass down your BuildContext');
+      } else if (secretKey == null) {
+        //because Secret key is needed for mobile
+        throw Exception('Please provide your paystack secret key');
+      } else if (secretKey.isEmpty) {
+        throw Exception('Please provide a valid paystack secret key');
+      }
+    }
+
     return await makePlatformSpecificPayment.makePayment(
       customerEmail: customerEmail,
       context: context,
@@ -44,6 +68,7 @@ class FlutterPaystackPlus {
       publicKey: publicKey,
       secretKey: secretKey,
       amount: amount,
+      metadata: metadata,
       reference: reference,
       onClosed: onClosed,
       onSuccess: onSuccess,

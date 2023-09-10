@@ -24,6 +24,7 @@ class PayForWeb implements MakePlatformSpecificPayment {
     String? publicKey,
     String? secretKey,
     String? currency,
+    Object? metadata,
     BuildContext? context,
     required void Function() onClosed,
     required void Function() onSuccess,
