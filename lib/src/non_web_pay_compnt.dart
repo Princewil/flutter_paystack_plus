@@ -57,6 +57,7 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
           "reference": widget.reference,
           "currency": widget.currency,
           "metadata": widget.metadata,
+          "callback_url": widget.callbackUrl,
           "channels": widget.paymentChannel
         }),
       );
