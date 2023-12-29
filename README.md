@@ -99,10 +99,14 @@ C. NO SETUP REQUIRED for iOS
      FlutterPaystackPlus.openPaystackPopup(
       publicKey: '-Your-public-key-',
       customerEmail: 'youremail@gmail.com',
-      context:context,
-      secretKey:'-Your-secret-key-',
+      context: context,
+      secretKey: '-Your-secret-key-',
       amount: (amount * 100).toString(),
       reference: DateTime.now().millisecondsSinceEpoch.toString(),
+      callBackUrl: "[GET IT FROM YOUR PAYSTACK DASHBOARD]",
+      metadata: {
+       "cancel_action": "cancelurl.com", // Use this for it to work...
+      },
       onClosed: () {
         debugPrint('Could\'nt finish payment');
       },
@@ -111,6 +115,10 @@ C. NO SETUP REQUIRED for iOS
       },
     );
 ```
+
+## Contributor(s)
+I would like to thank [gikwegbu](https://github.com/gikwegbu) for his valuable contributions to this project.
+
 
 ## Additional information
 Please feel very free to contribute. Experienced an issue or want to report a bug? Please, feel free to report it. Remember to be as descriptive as possible. 

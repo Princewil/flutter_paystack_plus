@@ -63,11 +63,13 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
       );
     } on Exception catch (e) {
       /// In the event of an exception, take the user back and show a SnackBar error.
-      Navigator.pop(context);
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      var snackBar =
-          SnackBar(content: Text("Fatal error occurred, ${e.toString()}"));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      if (context.mounted) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        var snackBar =
+            SnackBar(content: Text("Fatal error occurred, ${e.toString()}"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     }
 
     if (response!.statusCode == 200) {
@@ -92,11 +94,13 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
       );
     } on Exception catch (_) {
       /// In the event of an exception, take the user back and show a SnackBar error.
-      Navigator.pop(context);
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      var snackBar = const SnackBar(
-          content: Text("Fatal error occurred, Please check your internet"));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      if (context.mounted) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        var snackBar = const SnackBar(
+            content: Text("Fatal error occurred, Please check your internet"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     }
     if (response!.statusCode == 200) {
       var decodedRespBody = jsonDecode(response.body);
