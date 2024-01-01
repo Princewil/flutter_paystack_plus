@@ -104,9 +104,6 @@ C. NO SETUP REQUIRED for iOS
       amount: (amount * 100).toString(),
       reference: DateTime.now().millisecondsSinceEpoch.toString(),
       callBackUrl: "[GET IT FROM YOUR PAYSTACK DASHBOARD]",
-      metadata: {
-       "cancel_action": "cancelurl.com", // Use this for it to work...
-      },
       onClosed: () {
         debugPrint('Could\'nt finish payment');
       },
@@ -117,7 +114,7 @@ C. NO SETUP REQUIRED for iOS
 ```
 
 ## Contributor(s)
-I would like to thank [gikwegbu](https://github.com/gikwegbu) for his valuable contributions to this project.
+I would like to thank [gikwegbu](https://github.com/gikwegbu) for his valuable contribution to this project.
 
 
 ## Additional information
