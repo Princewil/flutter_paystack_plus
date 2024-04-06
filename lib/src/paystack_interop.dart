@@ -10,6 +10,7 @@ external paystackPopUp(
   String email,
   String amount,
   String ref,
+  String plan,
   void Function() onClosed,
   void Function() callback,
 );
@@ -25,6 +26,7 @@ class PayForWeb implements MakePlatformSpecificPayment {
     String? secretKey,
     String? currency,
     metadata,
+    String? plan,
     BuildContext? context,
     required void Function() onClosed,
     required void Function() onSuccess,
@@ -35,6 +37,7 @@ class PayForWeb implements MakePlatformSpecificPayment {
         customerEmail,
         amount,
         reference,
+        plan ?? '',
         js.allowInterop(onClosed),
         js.allowInterop(onSuccess),
       ),

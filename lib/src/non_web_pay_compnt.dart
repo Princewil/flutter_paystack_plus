@@ -13,24 +13,26 @@ class PaystackPayNow extends StatefulWidget {
   final String currency;
   final String email;
   final String amount;
+  final String? plan;
   final metadata;
   final paymentChannel;
   final void Function() transactionCompleted;
   final void Function() transactionNotCompleted;
 
-  const PaystackPayNow(
-      {Key? key,
-      required this.secretKey,
-      required this.email,
-      required this.reference,
-      required this.currency,
-      required this.amount,
-      required this.callbackUrl,
-      required this.transactionCompleted,
-      required this.transactionNotCompleted,
-      this.metadata,
-      this.paymentChannel})
-      : super(key: key);
+  const PaystackPayNow({
+    Key? key,
+    required this.secretKey,
+    required this.email,
+    required this.reference,
+    required this.currency,
+    required this.amount,
+    required this.callbackUrl,
+    required this.transactionCompleted,
+    required this.transactionNotCompleted,
+    this.metadata,
+    this.plan,
+    this.paymentChannel,
+  }) : super(key: key);
 
   @override
   State<PaystackPayNow> createState() => _PaystackPayNowState();
@@ -56,6 +58,7 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
           "amount": widget.amount,
           "reference": widget.reference,
           "currency": widget.currency,
+          "plan": widget.plan,
           "metadata": widget.metadata,
           "callback_url": widget.callbackUrl,
           "channels": widget.paymentChannel

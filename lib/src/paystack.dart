@@ -30,6 +30,9 @@ class FlutterPaystackPlus {
     /// [context] is required for android and iOS only
     BuildContext? context,
 
+    /// Incase your payment was setup with a subscription pattern/plan
+    String? plan,
+
     ///Extra data for developer purposes.
     metadata,
 
@@ -69,6 +72,7 @@ class FlutterPaystackPlus {
       secretKey: secretKey,
       amount: amount,
       metadata: metadata,
+      plan: plan,
       reference: reference,
       onClosed: onClosed,
       onSuccess: onSuccess,

@@ -13,6 +13,7 @@ abstract class MakePlatformSpecificPayment {
     required String? currency,
     required String? callBackUrl,
     required metadata,
+    String? plan,
     required BuildContext? context,
     required void Function() onClosed,
     required void Function() onSuccess,
