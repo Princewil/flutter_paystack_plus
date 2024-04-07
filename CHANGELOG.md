@@ -30,3 +30,6 @@ Updated readme
 
 ## 1.2.1
 - fixed bug for mobile
+
+## 2.0.2
+- Implemented split payment and subscription features

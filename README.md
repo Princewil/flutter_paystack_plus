@@ -13,7 +13,15 @@ and the Flutter guide for
 
 A Flutter plugin for making payments via Paystack Payment Gateway - Compatible on Android, iOS and Web.
 
-## Features
+## What's New?
+
+- Split payment
+
+- Subscription payment
+
+
+
+## Other Features
 
 - Mobile Money
 
@@ -217,6 +225,8 @@ C. NO SETUP REQUIRED for iOS
 ## Contributor(s)
 
 I would like to thank [gikwegbu](https://github.com/gikwegbu) for his valuable contribution to this project.
+
+I also want appreciate [jeremiahseun](https://github.com/jeremiahseun) for his work in making the split payment and subscription functionalities possible.
 
 ## Additional information
 
