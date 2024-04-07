@@ -27,15 +27,20 @@ A Flutter plugin for making payments via Paystack Payment Gateway - Compatible o
 
 - QR
 
+- Split Payments
+
+- Subscriptions
+
 ## Getting started
 
-Before getting started, ensure you have succesfully created an account on paystack and you have your public key ready. Vist https://paystack.com to setup your account.
+Before getting started, ensure you have succesfully created an account on paystack and you have your public key ready. Vist <https://paystack.com> to setup your account.
 
 A. FOR WEB COMPATIBILITY: Ensure you do the following
 
 1. Create a file on your web folder and call it "paystack_interop.js"
 
 2. Copy and paste the code below on the created folder
+
 ```dart
 function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
   let handler = PaystackPop.setup({
@@ -56,7 +61,9 @@ function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
   return handler.openIframe();
 }
 ```
+
 3. In your web/index.html file add the following code at the top of the body tag section
+
 ```dart
 <body>
 <script src="https://js.paystack.co/v1/inline.js"></script>
@@ -66,6 +73,101 @@ function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
 </body>
 ```
 
+## Split Payments
+
+You can split your payment into single or multiple subaccounts.
+
+Here is how you can do that:
+
+- Single Split Payment
+
+In your "paystack_interop.js" file, you can add:
+
+```js
+ let handler = PaystackPop.setup({
+        key: publicKey,
+        email: email,
+        amount: amount,
+        ref: ref,
+        onClose: function () {
+            alert("Window closed.");
+            onClosed();
+        },
+        callback: function (response) {
+            callback();
+            let message = "Payment complete! Reference: " + response.reference;
+            alert(message);
+        },
+        //* NEW LINES
+        //* Required
+        subaccount: "<CODE_ID_OF_SUBACCOUNT>"  // It looks like "ACCT_osl1da48je0lez6"
+        //* Optional
+        transaction_charge: "2500" // If you want to override the percentage and use the flat fee.
+        //* Optional
+        bearer: "subaccount" // Decide who will bear Paystack transaction charges between account and subaccount. Defaults to account
+        //* End of Subaccount
+          });
+    return handler.openIframe();
+```
+
+- Multi Split Payment
+
+In your "paystack_interop.js" file, you can add:
+
+```js
+ let handler = PaystackPop.setup({
+        key: publicKey,
+        email: email,
+        amount: amount,
+        ref: ref,
+        onClose: function () {
+            alert("Window closed.");
+            onClosed();
+        },
+        callback: function (response) {
+            callback();
+            let message = "Payment complete! Reference: " + response.reference;
+            alert(message);
+        },
+        //* NEW LINES
+        //* Required
+        split_code: "<CODE_ID_OF_SUBACCOUNT>"  // It looks like "SPL_98WF13Eb3w. The split code of the transaction split"
+        //* End of Subaccount
+          });
+    return handler.openIframe();
+```
+
+## Subscriptions
+
+You can also get subscription payments also.
+
+Here is how you can do that:
+In your "paystack_interop.js" file, you can add:
+
+```js
+ let handler = PaystackPop.setup({
+        key: publicKey,
+        email: email,
+        amount: amount,
+        ref: ref,
+        onClose: function () {
+            alert("Window closed.");
+            onClosed();
+        },
+        callback: function (response) {
+            callback();
+            let message = "Payment complete! Reference: " + response.reference;
+            alert(message);
+        },
+        //* NEW LINES
+        //* Required
+        plan: "<PLAN_CODE>"  // Plan code generated from creating a plan. This makes the payment become a subscription payment
+        //* Optional
+        quantity: "10" // Used to apply a multiple to the amount returned by the plan code above.
+        //* End of Subaccount
+          });
+    return handler.openIframe();
+```
 
 B. FOR ANDROID COMPATIBILITY: Ensure your minSdkVersion is 19 or higher
 
@@ -79,7 +181,6 @@ defaultConfig {
         versionName flutterVersionName
     }
 ```
-
 
 C. NO SETUP REQUIRED for iOS
 
@@ -114,9 +215,10 @@ C. NO SETUP REQUIRED for iOS
 ```
 
 ## Contributor(s)
+
 I would like to thank [gikwegbu](https://github.com/gikwegbu) for his valuable contribution to this project.
 
-
 ## Additional information
-Please feel very free to contribute. Experienced an issue or want to report a bug? Please, feel free to report it. Remember to be as descriptive as possible. 
+
+Please feel very free to contribute. Experienced an issue or want to report a bug? Please, feel free to report it. Remember to be as descriptive as possible.
 Thank you.
