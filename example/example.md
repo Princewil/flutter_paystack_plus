@@ -85,9 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         amount: (amount * 100).toString(),
                         reference: ref,
                         callBackUrl: "[GET IT FROM YOUR PAYSTACK DASHBOARD]",
-                        metadata: {
-                          "cancel_action": "cancelurl.com", // Use this for it to work...
-                        },
                         onClosed: () {
                           debugPrint('Could\'nt finish payment');
                         },

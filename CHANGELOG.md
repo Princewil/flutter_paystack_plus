@@ -23,6 +23,13 @@ Updated readme
 
 ## 1.0.2
 - Fixed bug for mobile
+
 ## 1.1.0
 - Added Metadata as a parameter
 - Upgrade package
+
+## 1.2.1
+- fixed bug for mobile
+
+## 2.0.3
+- Implemented split payment and subscription features

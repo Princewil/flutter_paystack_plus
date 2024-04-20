@@ -15,7 +15,7 @@ class PayForMobile implements MakePlatformSpecificPayment {
     String? currency,
     String? plan,
     BuildContext? context,
-    metadata,
+    Map? metadata,
     required void Function() onClosed,
     required void Function() onSuccess,
   }) async {
@@ -36,17 +36,6 @@ class PayForMobile implements MakePlatformSpecificPayment {
                 callbackUrl: callBackUrl ?? '',
               )),
     );
-    // await PayWithPayStack().now(
-    //   context: context!,
-    //   secretKey: secretKey!,
-    //   callbackUrl: callBackUrl ?? '',
-    //   customerEmail: customerEmail,
-    //   reference: reference,
-    //   currency: currency!,
-    //   amount: amount,
-    //   transactionCompleted: onSuccess,
-    //   transactionNotCompleted: onClosed,
-    // );
   }
 }
 

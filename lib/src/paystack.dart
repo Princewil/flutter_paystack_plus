@@ -34,7 +34,7 @@ class FlutterPaystackPlus {
     String? plan,
 
     ///Extra data for developer purposes.
-    metadata,
+    Map? metadata,
 
     /// [onClosed] is called when the user cancels a transaction or when there is a failed transaction
     required void Function() onClosed,
@@ -62,6 +62,13 @@ class FlutterPaystackPlus {
       } else if (secretKey.isEmpty) {
         throw Exception('Please provide a valid paystack secret key');
       }
+    }
+
+    final cancelMetaData = {"cancel_action": "cancelurl.com"};
+    if (metadata == null) {
+      metadata = cancelMetaData;
+    } else {
+      metadata.addEntries(cancelMetaData.entries);
     }
 
     return await makePlatformSpecificPayment.makePayment(
