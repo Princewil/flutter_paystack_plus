@@ -5,18 +5,20 @@ import 'non_web_pay_compnt.dart';
 
 class PayForMobile implements MakePlatformSpecificPayment {
   @override
-  Future makePayment(
-      {required String customerEmail,
-      required String amount,
-      required String reference,
-      String? callBackUrl,
-      String? publicKey,
-      String? secretKey,
-      String? currency,
-      BuildContext? context,
-      Map? metadata,
-      required void Function() onClosed,
-      required void Function() onSuccess}) async {
+  Future makePayment({
+    required String customerEmail,
+    required String amount,
+    required String reference,
+    String? callBackUrl,
+    String? publicKey,
+    String? secretKey,
+    String? currency,
+    String? plan,
+    BuildContext? context,
+    Map? metadata,
+    required void Function() onClosed,
+    required void Function() onSuccess,
+  }) async {
     return await Navigator.push(
       context!,
       MaterialPageRoute(
@@ -27,6 +29,7 @@ class PayForMobile implements MakePlatformSpecificPayment {
                 currency: currency!,
                 amount: amount,
                 //paymentChannel: paymentChannel,
+                plan: plan ?? '',
                 metadata: metadata,
                 transactionCompleted: onSuccess,
                 transactionNotCompleted: onClosed,

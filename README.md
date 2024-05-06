@@ -201,6 +201,7 @@ C. NO SETUP REQUIRED for iOS
 - [onClose] is called when the user cancels a transaction or when there is a failed transaction
 - [onSuccess] is called on successful transactions
 - [callBackURL] is required for Mobile only. Users are redirected to this URL after payment is successful, this helps close the session. The URL is setup in your Dashboard and then provided here.
+- [plan] is for options of making payments to plan subscriptions
 
 ## Usage
 
@@ -208,8 +209,9 @@ C. NO SETUP REQUIRED for iOS
      FlutterPaystackPlus.openPaystackPopup(
       publicKey: '-Your-public-key-',
       customerEmail: 'youremail@gmail.com',
-      context: context,
-      secretKey: '-Your-secret-key-',
+      context:context,
+      secretKey:'-Your-secret-key-',
+      plan:'-Your-plan-configured-from-your-dashboard-',
       amount: (amount * 100).toString(),
       reference: DateTime.now().millisecondsSinceEpoch.toString(),
       callBackUrl: "[GET IT FROM YOUR PAYSTACK DASHBOARD]",
