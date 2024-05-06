@@ -226,9 +226,11 @@ C. NO SETUP REQUIRED for iOS
 
 ## Contributor(s)
 
-I would like to thank [gikwegbu](https://github.com/gikwegbu) for his valuable contribution to this project.
+I would like to express my appreciation to [Daniel Kabu Asare](https://github.com/popekabu) for his invaluable work on the [pay_with_paystack](https://pub.dev/packages/pay_with_paystack) package, which provided the foundational insights for building the mobile platform of this package.
 
-I also want appreciate [jeremiahseun](https://github.com/jeremiahseun) for his work in making the split payment and subscription functionalities possible.
+I extend my gratitude to [George Ikwegbu Chinedu](https://github.com/gikwegbu) for his significant contributions to this project, particularly for enhancing the subscription functionalities tailored for mobile platforms.
+
+I would like to express my gratitude to [Jeremiah Oluwaseun Erinola](https://github.com/jeremiahseun) for his invaluable contribution, which laid the foundation for implementing the split payment and subscription functionalities.
 
 ## Additional information
 

@@ -32,4 +32,7 @@ Updated readme
 - fixed bug for mobile
 
 ## 2.0.3
-- Implemented split payment and subscription features
+- Implemented split payment and subscription features for web only
+
+## 2.0.4
+- Implemented split payment and subscription features for both web and mobile
