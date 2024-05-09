@@ -1,8 +1,9 @@
-import 'package:js/js.dart';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack_plus/src/abstract_class.dart';
+import 'package:js/js.dart';
 
 @JS()
 external paystackPopUp(
@@ -11,6 +12,7 @@ external paystackPopUp(
   String amount,
   String ref,
   String plan,
+  String currency,
   void Function() onClosed,
   void Function() callback,
 );
@@ -38,6 +40,7 @@ class PayForWeb implements MakePlatformSpecificPayment {
         amount,
         reference,
         plan ?? '',
+        currency ?? 'NGN',
         js.allowInterop(onClosed),
         js.allowInterop(onSuccess),
       ),
