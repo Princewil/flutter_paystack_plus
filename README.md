@@ -41,7 +41,7 @@ A Flutter plugin for making payments via Paystack Payment Gateway - Compatible o
 
 ## Getting started
 
-Before getting started, ensure you have succesfully created an account on paystack and you have your public key ready. Vist <https://paystack.com> to setup your account.
+Before getting started, ensure you have successfully created an account on paystack and you have your public key ready. Vist <https://paystack.com> to setup your account.
 
 A. FOR WEB COMPATIBILITY: Ensure you do the following
 
@@ -99,6 +99,7 @@ In your "paystack_interop.js" file, you can add:
         email: email,
         amount: amount,
         ref: ref,
+        currency: currency,
         onClose: function () {
             alert("Window closed.");
             onClosed();
@@ -130,6 +131,7 @@ In your "paystack_interop.js" file, you can add:
         email: email,
         amount: amount,
         ref: ref,
+        currency: currency,
         onClose: function () {
             alert("Window closed.");
             onClosed();
@@ -160,6 +162,7 @@ In your "paystack_interop.js" file, you can add:
         email: email,
         amount: amount,
         ref: ref,
+        currency: currency,
         onClose: function () {
             alert("Window closed.");
             onClosed();
