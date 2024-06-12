@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  js: ^0.7.1
+  js: ^0.6.3
   http: ^1.2.1
   webview_flutter: ^4.7.0
 
