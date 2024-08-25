@@ -30,8 +30,8 @@ class PayForWeb implements MakePlatformSpecificPayment {
     metadata,
     String? plan,
     BuildContext? context,
-    required void Function() onClosed,
-    required void Function() onSuccess,
+    required Function() onClosed,
+    required Function() onSuccess,
   }) async {
     js.context.callMethod(
       paystackPopUp(
