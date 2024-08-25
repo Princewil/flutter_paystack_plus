@@ -16,8 +16,8 @@ class PayForMobile implements MakePlatformSpecificPayment {
     String? plan,
     BuildContext? context,
     Map? metadata,
-    required Object? Function() onClosed,
-    required Object? Function() onSuccess,
+    required void Function() onClosed,
+    required void Function() onSuccess,
   }) async {
     return await Navigator.push(
       context!,

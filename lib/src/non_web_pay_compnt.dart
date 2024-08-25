@@ -16,8 +16,8 @@ class PaystackPayNow extends StatefulWidget {
   final String? plan;
   final metadata;
   final paymentChannel;
-  final Object? Function() transactionCompleted;
-  final Object? Function() transactionNotCompleted;
+  final void Function() transactionCompleted;
+  final void Function() transactionNotCompleted;
 
   const PaystackPayNow({
     Key? key,

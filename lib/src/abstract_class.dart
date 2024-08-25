@@ -15,8 +15,8 @@ abstract class MakePlatformSpecificPayment {
     String? plan,
     required Map? metadata,
     required BuildContext? context,
-    required Object? Function() onClosed,
-    required Object? Function() onSuccess,
+    required void Function() onClosed,
+    required void Function() onSuccess,
   }) async {
     //
   }
