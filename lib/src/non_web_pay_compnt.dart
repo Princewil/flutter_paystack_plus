@@ -66,7 +66,7 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
       );
     } on Exception catch (e) {
       /// In the event of an exception, take the user back and show a SnackBar error.
-      if (context.mounted) {
+      if (mounted) {
         Navigator.pop(context);
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         var snackBar =
@@ -97,7 +97,7 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
       );
     } on Exception catch (_) {
       /// In the event of an exception, take the user back and show a SnackBar error.
-      if (context.mounted) {
+      if (mounted) {
         Navigator.pop(context);
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         var snackBar = const SnackBar(
@@ -139,19 +139,25 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
                       if (request.url.contains('cancelurl.com')) {
                         await _checkTransactionStatus(snapshot.data!.reference)
                             .then((value) {
-                          Navigator.of(context).pop();
+                          if (context.mounted) {
+                            Navigator.of(context).pop();
+                          }
                         });
                       }
                       if (request.url.contains('paystack.co/close')) {
                         await _checkTransactionStatus(snapshot.data!.reference)
                             .then((value) {
-                          Navigator.of(context).pop();
+                          if (context.mounted) {
+                            Navigator.of(context).pop();
+                          }
                         });
                       }
                       if (request.url.contains(widget.callbackUrl)) {
                         await _checkTransactionStatus(snapshot.data!.reference)
                             .then((value) {
-                          Navigator.of(context).pop();
+                          if (context.mounted) {
+                            Navigator.of(context).pop();
+                          }
                         });
                       }
                       return NavigationDecision.navigate;

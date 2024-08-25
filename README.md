@@ -13,7 +13,7 @@ and the Flutter guide for
 
 A Flutter plugin for making payments via Paystack Payment Gateway - Compatible on Android, iOS and Web.
 
-## What's New?
+## Special Features
 
 - Split payment
 
@@ -237,6 +237,8 @@ I would like to express my appreciation to [Daniel Kabu Asare](https://github.co
 I extend my gratitude to [George Ikwegbu Chinedu](https://github.com/gikwegbu) for his significant contributions to this project, particularly for enhancing the subscription functionalities tailored for mobile platforms.
 
 I would like to express my gratitude to [Jeremiah Oluwaseun Erinola](https://github.com/jeremiahseun) for his invaluable contribution, which laid the foundation for implementing the split payment and subscription functionalities.
+
+Special thanks to [Kelvin Osei Poku](https://github.com/keezysilencer) for expanding the currency option to the web
 
 ## Additional information
 

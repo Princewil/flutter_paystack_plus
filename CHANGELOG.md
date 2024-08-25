@@ -36,3 +36,6 @@ Updated readme
 
 ## 2.0.4
 - Implemented split payment and subscription features for both web and mobile
+
+## 2.1.0
+- Expanded currency option for web
