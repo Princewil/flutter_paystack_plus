@@ -37,10 +37,10 @@ class FlutterPaystackPlus {
     Map? metadata,
 
     /// [onClosed] is called when the user cancels a transaction or when there is a failed transaction
-    required Function() onClosed,
+    required Object? Function() onClosed,
 
     /// [onSuccess] is called on successfull transactions
-    required Function() onSuccess,
+    required Object? Function() onSuccess,
   }) async {
     final MakePlatformSpecificPayment makePlatformSpecificPayment =
         MakePlatformSpecificPayment();
