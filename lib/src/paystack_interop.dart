@@ -41,8 +41,8 @@ class PayForWeb implements MakePlatformSpecificPayment {
         reference,
         plan ?? '',
         currency ?? 'NGN',
-        js.allowInterop(onClosed),
-        js.allowInterop(onSuccess),
+        js.allowInterop(() => onClosed() ?? Object()),
+        js.allowInterop(() => onSuccess() ?? Object()),
       ),
       [],
     );
