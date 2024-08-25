@@ -41,7 +41,7 @@ A Flutter plugin for making payments via Paystack Payment Gateway - Compatible o
 
 ## Getting started
 
-Before getting started, ensure you have succesfully created an account on paystack and you have your public key ready. Vist <https://paystack.com> to setup your account.
+Before getting started, ensure you have successfully created an account on paystack and you have your public key ready. Vist <https://paystack.com> to setup your account.
 
 A. FOR WEB COMPATIBILITY: Ensure you do the following
 
@@ -50,12 +50,14 @@ A. FOR WEB COMPATIBILITY: Ensure you do the following
 2. Copy and paste the code below on the created folder
 
 ```dart
-function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
+function paystackPopUp(publicKey, email, amount, ref,plan,currency, onClosed, callback) {
   let handler = PaystackPop.setup({
     key: publicKey,
     email: email,
     amount: amount,
     ref: ref,
+    plan: plan,
+    currency: currency,
     onClose: function () {
       alert("Window closed.");
       onClosed();
@@ -72,7 +74,7 @@ function paystackPopUp(publicKey, email, amount, ref, onClosed, callback) {
 
 3. In your web/index.html file add the following code at the top of the body tag section
 
-```dart
+```html
 <body>
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script src="paystack_interop.js"></script>
@@ -97,6 +99,7 @@ In your "paystack_interop.js" file, you can add:
         email: email,
         amount: amount,
         ref: ref,
+        currency: currency,
         onClose: function () {
             alert("Window closed.");
             onClosed();
@@ -128,6 +131,7 @@ In your "paystack_interop.js" file, you can add:
         email: email,
         amount: amount,
         ref: ref,
+        currency: currency,
         onClose: function () {
             alert("Window closed.");
             onClosed();
@@ -158,6 +162,7 @@ In your "paystack_interop.js" file, you can add:
         email: email,
         amount: amount,
         ref: ref,
+        currency: currency,
         onClose: function () {
             alert("Window closed.");
             onClosed();
@@ -202,6 +207,7 @@ C. NO SETUP REQUIRED for iOS
 - [onSuccess] is called on successful transactions
 - [callBackURL] is required for Mobile only. Users are redirected to this URL after payment is successful, this helps close the session. The URL is setup in your Dashboard and then provided here.
 - [plan] is for options of making payments to plan subscriptions
+- [currency] is the payment currency of [amount]. Defaults to NGN i.e Naira.
 
 ## Usage
 
