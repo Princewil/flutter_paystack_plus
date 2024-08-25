@@ -13,8 +13,8 @@ external paystackPopUp(
   String ref,
   String plan,
   String currency,
-  void Function() onClosed,
-  void Function() callback,
+  Function() onClosed,
+  Function() callback,
 );
 
 class PayForWeb implements MakePlatformSpecificPayment {
