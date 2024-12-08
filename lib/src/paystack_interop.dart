@@ -13,8 +13,8 @@ external paystackPopUp(
   String ref,
   String plan,
   String currency,
-  void Function() onClosed,
-  void Function() callback,
+  Object? Function() onClosed,
+  Object? Function() callback,
 );
 
 class PayForWeb implements MakePlatformSpecificPayment {
@@ -30,8 +30,8 @@ class PayForWeb implements MakePlatformSpecificPayment {
     metadata,
     String? plan,
     BuildContext? context,
-    required void Function() onClosed,
-    required void Function() onSuccess,
+    required Object? Function() onClosed,
+    required Object? Function() onSuccess,
   }) async {
     js.context.callMethod(
       paystackPopUp(
