@@ -1,3 +1,5 @@
+## 2.2.2
+- Upgraded package
 
 ## 2.2.1
 - Upgraded package

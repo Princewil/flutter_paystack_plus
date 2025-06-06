@@ -4,6 +4,8 @@ import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack_plus/src/abstract_class.dart';
 import 'package:js/js.dart';
+// 'dart:js' is deprecated and shouldn't be used. Use dart:js_interop instead.
+// Try replacing the use of the deprecated member with the replacement.
 
 @JS()
 external paystackPopUp(
