@@ -238,7 +238,9 @@ I extend my gratitude to [George Ikwegbu Chinedu](https://github.com/gikwegbu) f
 
 I would like to express my gratitude to [Jeremiah Oluwaseun Erinola](https://github.com/jeremiahseun) for his invaluable contribution, which laid the foundation for implementing the split payment and subscription functionalities.
 
-Special thanks to [Kelvin Osei Poku](https://github.com/keezysilencer) for expanding the currency option to the web
+Special thanks to [Kelvin Osei Poku](https://github.com/keezysilencer) for expanding the currency option to the web. 
+
+Thanks to [Okpongu Tamarautukpamobowei](https://github.com/silentl007) for his contribution in spotting and fixing webview reload due to Keyboard focus. 
 
 ## Additional information
 

@@ -1,3 +1,6 @@
+## 2.3.0
+- Fixed keyboard on focus causing the webview to reload on Android
+
 ## 2.2.3
 - Fixed "TypeError: null: type 'Null' is not a subtype of type 'Object' after a successful payment"
 - Upgraded dependencies
