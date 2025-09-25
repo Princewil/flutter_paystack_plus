@@ -39,7 +39,15 @@ class PaystackPayNow extends StatefulWidget {
 }
 
 class _PaystackPayNowState extends State<PaystackPayNow> {
-  /// Makes HTTP Request to Paystack for access to make payment.
+  late Future<PaystackRequestResponse> payment;
+  WebViewController? _controller; // keep it persistent
+
+  @override
+  void initState() {
+    super.initState();
+    payment = _makePaymentRequest();
+  }
+   /// Makes HTTP Request to Paystack for access to make payment.
   Future<PaystackRequestResponse> _makePaymentRequest() async {
     http.Response? response;
     try {
@@ -81,6 +89,30 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
       throw Exception(
           "Response Code: ${response.statusCode}, Response Body${response.body}");
     }
+  }
+
+  WebViewController _buildController(String authUrl) {
+    final controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      // remove the forced UA (let WebView pick a mobile UA)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onNavigationRequest: (request) async {
+            final url = request.url;
+
+            if (url.contains('cancelurl.com') ||
+                url.contains('paystack.co/close') ||
+                url.contains(widget.callbackUrl)) {
+              await _checkTransactionStatus(widget.reference);
+              if (context.mounted) Navigator.of(context).pop();
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(authUrl));
+
+    return controller;
   }
 
   /// Checks for transaction status of current transaction before view closes.
@@ -126,59 +158,15 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder<PaystackRequestResponse>(
-          future: _makePaymentRequest(),
+          future:payment,
           builder: (context, AsyncSnapshot<PaystackRequestResponse> snapshot) {
             /// Show screen if snapshot has data and status is true.
             if (snapshot.hasData && snapshot.data!.status == true) {
-              final controller = WebViewController()
-                ..setJavaScriptMode(JavaScriptMode.unrestricted)
-                ..setUserAgent("Flutter;Webview")
-                ..setNavigationDelegate(
-                  NavigationDelegate(
-                    onNavigationRequest: (request) async {
-                      if (request.url.contains('cancelurl.com')) {
-                        await _checkTransactionStatus(snapshot.data!.reference)
-                            .then((value) {
-                          if (context.mounted) {
-                            Navigator.of(context).pop();
-                          }
-                        });
-                      }
-                      if (request.url.contains('paystack.co/close')) {
-                        await _checkTransactionStatus(snapshot.data!.reference)
-                            .then((value) {
-                          if (context.mounted) {
-                            Navigator.of(context).pop();
-                          }
-                        });
-                      }
-                      if (request.url.contains(widget.callbackUrl)) {
-                        await _checkTransactionStatus(snapshot.data!.reference)
-                            .then((value) {
-                          if (context.mounted) {
-                            Navigator.of(context).pop();
-                          }
-                        });
-                      }
-                      return NavigationDecision.navigate;
-                    },
-                  ),
-                )
-                ..loadRequest(Uri.parse(snapshot.data!.authUrl));
+               _controller ??= _buildController(snapshot.data!.authUrl);
+
               return WebViewWidget(
-                controller: controller,
-                // initialUrl: snapshot.data!.authUrl,
-                // javascriptMode: JavascriptMode.unrestricted,
-                // navigationDelegate: (navigation) async {
-                //   if (navigation.url == 'https://standard.paystack.co/close') {
-                //     /// Check transaction status before closing the view back to the previous screen.
-                //     await _checkTransactionStatus(snapshot.data!.reference)
-                //         .then((value) {
-                //       return Navigator.of(context).pop();
-                //     });
-                //   }
-                //   return NavigationDecision.navigate;
-                // },
+                key: const ValueKey("paystack-webview"), // stable key
+                controller: _controller!,
               );
             }
 
