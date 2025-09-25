@@ -1,3 +1,7 @@
+## 2.2.3
+- Fixed "TypeError: null: type 'Null' is not a subtype of type 'Object' after a successful payment"
+- Upgraded dependencies
+
 ## 2.2.2
 - Upgraded package
 
