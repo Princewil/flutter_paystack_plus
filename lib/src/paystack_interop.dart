@@ -1,6 +1,4 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
-//import 'dart:js_interop' as js;
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack_plus/src/abstract_class.dart';
@@ -11,14 +9,14 @@ import 'dart:js_interop';
 
 @JS()
 external paystackPopUp(
-  String publicKey,
-  String email,
-  String amount,
-  String ref,
-  String plan,
-  String currency,
-  Function() onClosed,
-  Function() callback,
+  JSString publicKey,
+  JSString email,
+  JSString amount,
+  JSString ref,
+  JSString plan,
+  JSString currency,
+  JSFunction onClosed,
+  JSFunction callback,
 );
 
 class PayForWeb implements MakePlatformSpecificPayment {
@@ -37,19 +35,17 @@ class PayForWeb implements MakePlatformSpecificPayment {
     required Function() onClosed,
     required Function() onSuccess,
   }) async {
-    js.context.callMethod(
       paystackPopUp(
-        publicKey!,
-        customerEmail,
-        amount,
-        reference,
-        plan ?? '',
-        currency ?? 'NGN',
-        js.allowInterop(onClosed),
-        js.allowInterop(onSuccess),
-      ),
-      [],
-    );
+        publicKey!.toJS,
+        customerEmail.toJS,
+        amount.toJS,
+        reference.toJS,
+        (plan ?? '').toJS,
+        (currency ?? 'NGN').toJS,
+        onClosed.toJS,
+        onSuccess.toJS,
+        );
+     
   }
 }
 
