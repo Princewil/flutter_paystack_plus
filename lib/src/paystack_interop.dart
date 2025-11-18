@@ -8,7 +8,7 @@ import 'dart:js_interop';
 // Try replacing the use of the deprecated member with the replacement.
 
 @JS()
-external paystackPopUp(
+external void paystackPopUp(
   JSString publicKey,
   JSString email,
   JSString amount,
@@ -32,8 +32,8 @@ class PayForWeb implements MakePlatformSpecificPayment {
     metadata,
     String? plan,
     BuildContext? context,
-    required Function() onClosed,
-    required Function() onSuccess,
+    required void Function() onClosed,
+    required void Function() onSuccess,
   }) async {
       paystackPopUp(
         publicKey!.toJS,
