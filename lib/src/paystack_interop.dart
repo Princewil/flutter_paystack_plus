@@ -1,20 +1,15 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack_plus/src/abstract_class.dart';
-// import 'package:js/js.dart';
 import 'dart:js_interop';
-// 'dart:js' is deprecated and shouldn't be used. Use dart:js_interop instead.
-// Try replacing the use of the deprecated member with the replacement.
 
-@JS()
+@JS('paystackPopUp')
 external void paystackPopUp(
-  JSString publicKey,
-  JSString email,
-  JSString amount,
-  JSString ref,
-  JSString plan,
-  JSString currency,
+  String publicKey,
+  String email,
+  String amount,
+  String ref,
+  String plan,
+  String currency,
   JSFunction onClosed,
   JSFunction callback,
 );
@@ -35,17 +30,16 @@ class PayForWeb implements MakePlatformSpecificPayment {
     required void Function() onClosed,
     required void Function() onSuccess,
   }) async {
-      paystackPopUp(
-        publicKey!.toJS,
-        customerEmail.toJS,
-        amount.toJS,
-        reference.toJS,
-        (plan ?? '').toJS,
-        (currency ?? 'NGN').toJS,
-        onClosed.toJS,
-        onSuccess.toJS,
-        );
-     
+    paystackPopUp(
+      publicKey!,
+      customerEmail,
+      amount,
+      reference,
+      plan ?? '',
+      currency ?? 'NGN',
+      onClosed.toJS,
+      onSuccess.toJS,
+    );
   }
 }
 

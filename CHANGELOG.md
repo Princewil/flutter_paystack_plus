@@ -1,3 +1,6 @@
+## 2.4.0
+- Upgraded package
+
 ## 2.3.0
 - Fixed keyboard on focus causing the webview to reload on Android
 
