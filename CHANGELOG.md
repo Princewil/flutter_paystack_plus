@@ -1,3 +1,8 @@
+## 2.5.0
+- Made SecretKey optional for web and now mobile
+- Updated Readme
+- Updated example
+
 ## 2.4.0
 - Upgraded package
 

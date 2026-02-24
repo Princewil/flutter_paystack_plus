@@ -7,7 +7,12 @@ import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaystackPayNow extends StatefulWidget {
-  final String secretKey;
+  /// Secret key is optional. When provided, the package will initialize the
+  /// transaction and verify it internally. When null, [authorizationUrl] must
+  /// be supplied (pre-generated from your server) and the [transactionCompleted]
+  /// callback fires as soon as the webview flow ends — leaving verification
+  /// entirely to your server.
+  final String? secretKey;
   final String reference;
   final String callbackUrl;
   final String currency;
@@ -19,9 +24,14 @@ class PaystackPayNow extends StatefulWidget {
   final Function() transactionCompleted;
   final Function() transactionNotCompleted;
 
+  /// Pre-generated authorization URL from your own server. When provided,
+  /// the package skips the internal `/transaction/initialize` call. Requires
+  /// [secretKey] to be null (or omitted) when you want full server-side flow.
+  final String? authorizationUrl;
+
   const PaystackPayNow({
     Key? key,
-    required this.secretKey,
+    this.secretKey,
     required this.email,
     required this.reference,
     required this.currency,
@@ -32,6 +42,7 @@ class PaystackPayNow extends StatefulWidget {
     this.metadata,
     this.plan,
     this.paymentChannel,
+    this.authorizationUrl,
   }) : super(key: key);
 
   @override
@@ -45,9 +56,26 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
   @override
   void initState() {
     super.initState();
-    payment = _makePaymentRequest();
+    payment = _resolveAuthorizationUrl();
   }
-   /// Makes HTTP Request to Paystack for access to make payment.
+
+  /// Returns the authorization URL either from the pre-supplied [authorizationUrl]
+  /// or by initializing a transaction with Paystack using the [secretKey].
+  Future<PaystackRequestResponse> _resolveAuthorizationUrl() async {
+    // If a pre-generated URL was passed, use it directly — no network call needed.
+    if (widget.authorizationUrl != null &&
+        widget.authorizationUrl!.isNotEmpty) {
+      return PaystackRequestResponse(
+        authUrl: widget.authorizationUrl!,
+        status: true,
+        reference: widget.reference,
+      );
+    }
+    return await _makePaymentRequest();
+  }
+
+  /// Makes HTTP Request to Paystack to initialize a transaction and get the
+  /// authorization URL. Requires [secretKey] to be set.
   Future<PaystackRequestResponse> _makePaymentRequest() async {
     http.Response? response;
     try {
@@ -116,7 +144,17 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
   }
 
   /// Checks for transaction status of current transaction before view closes.
+  ///
+  /// When [secretKey] is null, this step is skipped and [transactionCompleted]
+  /// is called immediately — allowing the caller's server to handle verification.
   Future _checkTransactionStatus(String ref) async {
+    // No secret key → skip internal verification, fire success callback so the
+    // caller can verify the transaction on their own server.
+    if (widget.secretKey == null || widget.secretKey!.isEmpty) {
+      widget.transactionCompleted();
+      return;
+    }
+
     http.Response? response;
     try {
       /// Getting data, passing [ref] as a value to the URL that is being requested.
@@ -158,11 +196,11 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder<PaystackRequestResponse>(
-          future:payment,
+          future: payment,
           builder: (context, AsyncSnapshot<PaystackRequestResponse> snapshot) {
             /// Show screen if snapshot has data and status is true.
             if (snapshot.hasData && snapshot.data!.status == true) {
-               _controller ??= _buildController(snapshot.data!.authUrl);
+              _controller ??= _buildController(snapshot.data!.authUrl);
 
               return WebViewWidget(
                 key: const ValueKey("paystack-webview"), // stable key

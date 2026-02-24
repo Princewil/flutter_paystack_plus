@@ -14,6 +14,7 @@ class PayForMobile implements MakePlatformSpecificPayment {
     String? secretKey,
     String? currency,
     String? plan,
+    String? authorizationUrl,
     BuildContext? context,
     Map? metadata,
     required Function() onClosed,
@@ -23,17 +24,17 @@ class PayForMobile implements MakePlatformSpecificPayment {
       context!,
       MaterialPageRoute(
           builder: (context) => PaystackPayNow(
-                secretKey: secretKey!,
+                secretKey: secretKey,
                 email: customerEmail,
                 reference: reference,
-                currency: currency!,
+                currency: currency ?? 'NGN',
                 amount: amount,
-                //paymentChannel: paymentChannel,
                 plan: plan ?? '',
                 metadata: metadata,
                 transactionCompleted: onSuccess,
                 transactionNotCompleted: onClosed,
                 callbackUrl: callBackUrl ?? '',
+                authorizationUrl: authorizationUrl,
               )),
     );
   }

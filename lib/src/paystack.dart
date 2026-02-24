@@ -21,8 +21,19 @@ class FlutterPaystackPlus {
     /// [publicKey] is required for web only
     String? publicKey,
 
-    /// [secretKey] is required for android and iOS only
+    /// [secretKey] is required for android and iOS when you want the package to
+    /// initialize and verify the transaction internally.
+    /// Omit this if you are initializing the transaction on your own server and
+    /// passing the resulting URL via [authorizationUrl].
     String? secretKey,
+
+    /// Pre-generated Paystack authorization URL from your own server.
+    /// When provided on mobile, the package skips the internal
+    /// `/transaction/initialize` call. The [onSuccess] callback will still
+    /// fire once the webview flow completes, so you can trigger your own
+    /// server-side verification from there.
+    /// Either [secretKey] or [authorizationUrl] must be supplied for mobile.
+    String? authorizationUrl,
 
     /// Currency of the transaction
     String? currency,
@@ -52,15 +63,19 @@ class FlutterPaystackPlus {
         throw Exception('Please provide a valid paystack public key');
       }
     } else {
-      //meaning its running on mobile
+      // Running on mobile.
       if (context == null) {
-        //because context is needed for mobile
         throw Exception('Pass down your BuildContext');
-      } else if (secretKey == null) {
-        //because Secret key is needed for mobile
-        throw Exception('Please provide your paystack secret key');
-      } else if (secretKey.isEmpty) {
-        throw Exception('Please provide a valid paystack secret key');
+      }
+      // At least one of secretKey or authorizationUrl must be supplied.
+      final hasSecretKey = secretKey != null && secretKey.isNotEmpty;
+      final hasAuthUrl =
+          authorizationUrl != null && authorizationUrl.isNotEmpty;
+      if (!hasSecretKey && !hasAuthUrl) {
+        throw Exception(
+            'Please provide either your Paystack secret key (for internal '
+            'initialization + verification) or a pre-generated '
+            'authorizationUrl from your server.');
       }
     }
 
@@ -77,6 +92,7 @@ class FlutterPaystackPlus {
       currency: currency,
       publicKey: publicKey,
       secretKey: secretKey,
+      authorizationUrl: authorizationUrl,
       amount: amount,
       metadata: metadata,
       plan: plan,
