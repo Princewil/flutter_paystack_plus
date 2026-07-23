@@ -121,6 +121,7 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
 
   WebViewController _buildController(String authUrl) {
     final controller = WebViewController()
+      ..setBackgroundColor(const Color(0xFFFFFFFF))
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       // remove the forced UA (let WebView pick a mobile UA)
       ..setNavigationDelegate(
