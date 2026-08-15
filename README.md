@@ -99,11 +99,29 @@ No additional setup required.
 | `callBackUrl` | Mobile only | Redirect URL configured in your Paystack dashboard — helps the WebView detect when to close |
 | `secretKey` | Mobile (Package init) | Your Paystack secret key. Required when you want the **package** to initialize and verify the transaction. |
 | `authorizationUrl` | Mobile (Server init) | Pre-generated Paystack checkout URL from **your own server**. Use this instead of `secretKey` to keep your secret key out of the app. |
-| `currency` | Optional | Payment currency. Defaults to `NGN` (Naira) |
+| `currency` | Optional | Payment currency. Defaults to `NGN` (Naira). See [Supported Currencies](#supported-currencies) |
 | `plan` | Optional | Plan code for subscription payments |
 | `metadata` | Optional | Extra key-value data attached to the transaction |
 
 > **Note:** For mobile, you must provide **either** `secretKey` **or** `authorizationUrl` — but not both.
+
+---
+
+## Supported Currencies
+
+Paystack supports standard ISO 4217 currency codes. Pass the desired code to the `currency` parameter (e.g. `'NGN'`, `'USD'`):
+
+| Currency Code | Currency Name | Primary Region / Availability |
+|---|---|---|
+| `NGN` | Nigerian Naira | Nigeria *(default)* |
+| `USD` | United States Dollar | Nigeria & Kenya *(for eligible accounts)* |
+| `GHS` | Ghanaian Cedi | Ghana |
+| `ZAR` | South African Rand | South Africa |
+| `KES` | Kenyan Shilling | Kenya |
+| `XOF` | West African CFA Franc | Côte d'Ivoire |
+| `EGP` | Egyptian Pound | Egypt |
+
+> **Note:** Available currencies depend on where your Paystack merchant account is registered. Remember that transaction amounts must always be passed in the subunit of the chosen currency (e.g. multiplied by 100 for Kobo/Cents).
 
 ---
 

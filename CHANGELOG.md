@@ -1,3 +1,7 @@
+## 2.5.1
+- Updated Readme
+- Upgraded dependencies
+ 
 ## 2.5.0
 - Made SecretKey optional for web and now mobile
 - Updated Readme
