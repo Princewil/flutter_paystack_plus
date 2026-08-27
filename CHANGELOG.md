@@ -1,3 +1,6 @@
+## 2.6.0
+- Fixed issues with cancel payment on mobile and web
+
 ## 2.5.1
 - Updated Readme
 - Upgraded dependencies

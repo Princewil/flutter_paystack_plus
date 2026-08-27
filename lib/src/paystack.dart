@@ -79,11 +79,11 @@ class FlutterPaystackPlus {
       }
     }
 
-    final cancelMetaData = {"cancel_action": "cancelurl.com"};
+    final cancelMetaData = {"cancel_action": "https://cancelurl.com"};
     if (metadata == null) {
       metadata = cancelMetaData;
     } else {
-      metadata.addEntries(cancelMetaData.entries);
+      metadata = Map.from(metadata)..addAll(cancelMetaData);
     }
 
     return await makePlatformSpecificPayment.makePayment(

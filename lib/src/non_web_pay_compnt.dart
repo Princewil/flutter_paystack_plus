@@ -111,11 +111,12 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
       }
     }
 
-    if (response!.statusCode == 200) {
+    if (response != null && response.statusCode == 200) {
       return PaystackRequestResponse.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception(
-          "Response Code: ${response.statusCode}, Response Body${response.body}");
+      final code = response?.statusCode ?? 500;
+      final body = response?.body ?? 'Network error';
+      throw Exception("Response Code: $code, Response Body: $body");
     }
   }
 
@@ -125,15 +126,23 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
       // remove the forced UA (let WebView pick a mobile UA)
       ..setNavigationDelegate(
         NavigationDelegate(
-          onNavigationRequest: (request) async {
+          onNavigationRequest: (request) {
             final url = request.url;
 
             if (url.contains('cancelurl.com') ||
-                url.contains('paystack.co/close') ||
-                url.contains(widget.callbackUrl)) {
-              await _checkTransactionStatus(widget.reference);
+                url.contains('paystack.co/close')) {
               if (context.mounted) Navigator.of(context).pop();
+              widget.transactionNotCompleted();
+              return NavigationDecision.prevent;
             }
+
+            if (widget.callbackUrl.isNotEmpty &&
+                url.contains(widget.callbackUrl)) {
+              if (context.mounted) Navigator.of(context).pop();
+              _checkTransactionStatus(widget.reference);
+              return NavigationDecision.prevent;
+            }
+
             return NavigationDecision.navigate;
           },
         ),
@@ -143,11 +152,11 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
     return controller;
   }
 
-  /// Checks for transaction status of current transaction before view closes.
+  /// Checks for transaction status of current transaction before or after view closes.
   ///
   /// When [secretKey] is null, this step is skipped and [transactionCompleted]
   /// is called immediately — allowing the caller's server to handle verification.
-  Future _checkTransactionStatus(String ref) async {
+  Future<void> _checkTransactionStatus(String ref) async {
     // No secret key → skip internal verification, fire success callback so the
     // caller can verify the transaction on their own server.
     if (widget.secretKey == null || widget.secretKey!.isEmpty) {
@@ -155,39 +164,30 @@ class _PaystackPayNowState extends State<PaystackPayNow> {
       return;
     }
 
-    http.Response? response;
     try {
       /// Getting data, passing [ref] as a value to the URL that is being requested.
-      response = await http.get(
+      final response = await http.get(
         Uri.parse('https://api.paystack.co/transaction/verify/$ref'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ${widget.secretKey}',
         },
       );
-    } on Exception catch (_) {
-      /// In the event of an exception, take the user back and show a SnackBar error.
-      if (mounted) {
-        Navigator.pop(context);
-        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        var snackBar = const SnackBar(
-            content: Text("Fatal error occurred, Please check your internet"));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
-    }
-    if (response!.statusCode == 200) {
-      var decodedRespBody = jsonDecode(response.body);
-      if (decodedRespBody["data"]["gateway_response"] == "Approved" ||
-          decodedRespBody["data"]["gateway_response"] == "Successful") {
-        widget.transactionCompleted();
+
+      if (response.statusCode == 200) {
+        var decodedRespBody = jsonDecode(response.body);
+        if (decodedRespBody["data"] != null &&
+            (decodedRespBody["data"]["gateway_response"] == "Approved" ||
+                decodedRespBody["data"]["gateway_response"] == "Successful")) {
+          widget.transactionCompleted();
+        } else {
+          widget.transactionNotCompleted();
+        }
       } else {
         widget.transactionNotCompleted();
       }
-    } else {
-      /// Anything else means there is an issue
+    } catch (_) {
       widget.transactionNotCompleted();
-      throw Exception(
-          "Response Code: ${response.statusCode}, Response Body${response.body}");
     }
   }
 
